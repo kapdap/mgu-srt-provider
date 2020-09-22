@@ -83,7 +83,7 @@ namespace SRTPluginProviderMGU
 
         public unsafe IGameMemoryMGU Refresh()
         {
-            Memory.IGT.SetField(_processMemory, Pointers.FrameCounter, ref Memory.IGT._frameCounter, "FrameCounter");
+            Memory.IGT.SetField(_processMemory, Pointers.FrameCounter, ref Memory.IGT._frameCounter, "FrameCounter", "Calculated", "TimeStamp", "FormattedString");
             Memory.State.SetField(_processMemory, Pointers.CurrentCharacter, ref Memory.State._currentCharacterId, "CurrentCharacter");
             Memory.State.CurrentRoom.SetField(_processMemory, Pointers.CurrentRoom, ref Memory.State.CurrentRoom._id, "Id");
 
