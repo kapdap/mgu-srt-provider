@@ -76,26 +76,9 @@ namespace SRTPluginProviderMGU.Models
             set => SetField(ref _isEmpty, value);
         }
 
-        internal int _slot;
-        public int Slot
-        {
-            get => _slot;
-            set => SetField(ref _slot, value);
-        }
-
-        internal int _slotRow;
-        public int SlotRow
-        {
-            get => _slotRow;
-            set => SetField(ref _slotRow, value);
-        }
-
-        internal int _slotColumn;
-        public int SlotColumn
-        {
-            get => _slotColumn;
-            set => SetField(ref _slotColumn, value);
-        }
+        public int Slot { get; set; }
+        public int SlotRow { get; set; }
+        public int SlotColumn { get; set; }
 
         public InventoryEntry(int index)
         {
@@ -107,7 +90,7 @@ namespace SRTPluginProviderMGU.Models
 
         internal string GetName()
         {
-            switch(Type)
+            switch (Type)
             {
                 case ItemEnumeration.None:
                 default:
@@ -119,12 +102,19 @@ namespace SRTPluginProviderMGU.Models
         {
             if (IsEmpty) return;
 
+            IsEmpty = true;
+
             _type = 0;
-            _name = null;
+            _name = GetName();
             _quantity = 0;
             _isEquipped = true;
 
-            IsEmpty = true;
+            OnPropertyChanged("Type");
+            OnPropertyChanged("Name");
+            OnPropertyChanged("Quantity");
+            OnPropertyChanged("HasQuantity");
+            OnPropertyChanged("IsEquipped");
+            OnPropertyChanged("IsEmpty");
         }
 
         public override bool Equals(object obj) =>

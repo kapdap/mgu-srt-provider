@@ -26,7 +26,7 @@ namespace SRTPluginProviderMGU.Models
             $"{CurrentHP}:{MaximumHP}:{Convert.ToInt32(IsEmpty)}:{Convert.ToInt32(IsAlive)}:{Convert.ToInt32(Type)}";
 
         public string HealthMessage =>
-            $"{DisplayHP} {Percentage:P1}";
+            $"{DisplayHP} {Percentage:P0}";
 
         public int Index { get; private set; }
 
@@ -68,7 +68,7 @@ namespace SRTPluginProviderMGU.Models
         }
 
         public float Percentage
-            => IsAlive && CurrentHP > 0 && MaximumHP > 0 ? (float)DisplayHP / (float)MaximumHP : 0f;
+            => IsAlive && CurrentHP > 0 && MaximumHP > 0 && MaximumHP >= CurrentHP ? (float)DisplayHP / MaximumHP : 0f;
 
         internal byte _isAlive;
         public bool IsAlive
@@ -91,22 +91,22 @@ namespace SRTPluginProviderMGU.Models
         {
             if (IsEmpty) return;
 
+            IsEmpty = true;
+
             _type = 0;
             _currentHP = 0;
             _maximumHP = 0;
             _isAlive = 0;
 
-            IsEmpty = true;
-
-            OnPropertyChanged("IsAlive");
+            OnPropertyChanged("Type");
+            OnPropertyChanged("Name");
             OnPropertyChanged("CurrentHP");
             OnPropertyChanged("DisplayHP");
             OnPropertyChanged("MaximumHP");
             OnPropertyChanged("Percentage");
-            OnPropertyChanged("Type");
-            OnPropertyChanged("TypeName");
-            OnPropertyChanged("HealthMessage");
+            OnPropertyChanged("IsAlive");
             OnPropertyChanged("DebugMessage");
+            OnPropertyChanged("HealthMessage");
         }
 
         public override bool Equals(object obj) => 
