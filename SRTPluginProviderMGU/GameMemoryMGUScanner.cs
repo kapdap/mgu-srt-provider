@@ -107,8 +107,8 @@ namespace SRTPluginProviderMGU
                 CharacterEntry entry = Memory.Characters[i];
                 IntPtr pointer = Pointers.Characters[i];
 
-                entry.SetField(_processMemory, IntPtr.Add(pointer, 0x0), ref entry._currentHP, "CurrentHP", "IsAlive", "IsFine", "IsCaution", "IsDanger", "DisplayHP", "Percentage", "StatusName");
-                entry.SetField(_processMemory, IntPtr.Add(pointer, 0x4), ref entry._isPoison, "IsPoison", "StatusName");
+                entry.SetField(_processMemory, IntPtr.Add(pointer, 0x0), ref entry._currentHP, "CurrentHP", "IsAlive", "IsFine", "IsCaution", "IsDanger", "DisplayHP", "Percentage", "StatusName", "HealthMessage", "DebugMessage");
+                entry.SetField(_processMemory, IntPtr.Add(pointer, 0x4), ref entry._isPoison, "IsPoison", "StatusName", "DebugMessage");
                 entry.Room.SetField(_processMemory, IntPtr.Add(pointer, 0xA), ref entry.Room._id, "Id");
 
                 RefreshInventory(entry);
