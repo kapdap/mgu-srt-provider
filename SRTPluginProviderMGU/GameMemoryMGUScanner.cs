@@ -40,7 +40,7 @@ namespace SRTPluginProviderMGU
                 Pointers.WindowHandle = IntPtr.Add(Pointers.BaseAddress, Pointers._addressWindowHandle);
                 Pointers.CurrentCharacterId = IntPtr.Add(Pointers.BaseAddress, Pointers._addressCurrentCharacterId);
                 Pointers.FrameCount = IntPtr.Add(Pointers.BaseAddress, Pointers._addressFrameCount);
-                Pointers.CurrentRoom = IntPtr.Add(Pointers.BaseAddress, Pointers._addressCurrentRoom);
+                Pointers.CurrentRoomId = IntPtr.Add(Pointers.BaseAddress, Pointers._addressCurrentRoomId);
 
                 Pointers.Characters = new IntPtr[Memory.Characters.Length];
                 for (int i = 0; i < Pointers.Characters.Length; ++i)
@@ -86,7 +86,7 @@ namespace SRTPluginProviderMGU
             Memory.IGT.SetField(_processMemory, Pointers.FrameCounter, ref Memory.IGT._frameCounter, "FrameCounter", "Calculated", "TimeStamp", "FormattedString");
             Memory.IGT.SetField(_processMemory, Pointers.FrameCount, ref Memory.IGT._frameCount, "FrameCount", "Calculated", "TimeStamp", "FormattedString");
             Memory.State.SetField(_processMemory, Pointers.CurrentCharacterId, ref Memory.State._currentCharacterId, "CurrentCharacterId");
-            Memory.State.CurrentRoom.SetField(_processMemory, Pointers.CurrentRoom, ref Memory.State.CurrentRoom._id, "Id");
+            Memory.State.CurrentRoom.SetField(_processMemory, Pointers.CurrentRoomId, ref Memory.State.CurrentRoom._id, "Id");
 
             Memory.State.CurrentCharacter = Memory.Characters[(int)Memory.State.CurrentCharacterId];
 
