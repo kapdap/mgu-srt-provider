@@ -70,8 +70,8 @@ namespace SRTPluginProviderMGU
                 case GameVersion.MGU_1_3:
                     Pointers._addressWindowHandle = 0x1B57D8;
                     Pointers._addressFrameCount = 0x1BCF64;
-                    Pointers._addressCurrentRoom = 0x1BB519;
                     Pointers._addressCurrentCharacterId = 0x1BCF60;
+                    Pointers._addressCurrentRoomId = 0x1BB519;
                     Pointers._addressCharacters = 0x1BD0A8;
                     Pointers._addressInventory = 0x35196C;
                     Pointers._addressEnemy = 0x1BF088;
