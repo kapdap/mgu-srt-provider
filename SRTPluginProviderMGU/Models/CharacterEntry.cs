@@ -18,10 +18,16 @@ namespace SRTPluginProviderMGU.Models
                     return String.Format("{0} DEAD / DEAD (0%)", Name);
             }
         }
-        
+
+        public string DebugMessage =>
+            $"{CurrentHP}:{MaximumHP}:{Convert.ToInt32(IsAlive)}:{Convert.ToInt32(IsPoison)}:{Room.Id}:{Character}";
+
+        public string HealthMessage =>
+            $"{Percentage:P0}";
+
         public int Index { get; private set; }
 
-        public CharacterEnumeration Character { get; private set; } = CharacterEnumeration.Uji;
+        public CharacterEnumeration Character { get; private set; }
 
         public RoomEntry Room { get; } = new RoomEntry();
 
@@ -43,44 +49,56 @@ namespace SRTPluginProviderMGU.Models
             }
         }
 
-        internal int _maximumHP = 100;
-        public int MaximumHP
-        {
-            get => _maximumHP;
-            set => SetField(ref _maximumHP, value, "MaximumHP", "Percentage");
-        }
+        public int MaximumHP { get; } = 100;
 
         internal int _currentHP;
         public int CurrentHP
         {
             get => _currentHP;
-            set => SetField(ref _currentHP, value, "CurrentHP", "IsAlive", "IsFine", "IsCaution", "IsDanger", "DisplayHP", "Percentage", "StatusName");
+            set => SetField(ref _currentHP, value, "CurrentHP", "IsAlive", "IsFine", "IsCaution", "IsDanger", "DisplayHP", "Percentage", "Status", "HealthMessage", "DebugMessage");
         }
 
         public int DisplayHP
             => Math.Max(CurrentHP, 0);
 
         public float Percentage
-            => IsAlive ? (float)DisplayHP / (float)MaximumHP : 0f;
-
-        internal byte _isPoison;
-        public bool IsPoison
-        {
-            get => _isPoison == 1 ? true : false;
-            set => SetField(ref _isPoison, (byte)(value ? 1 : 0), "IsPoison", "StatusName");
-        }
+            => IsAlive ? (float)DisplayHP / MaximumHP : 0f;
 
         public bool IsAlive
             => CurrentHP >= 0;
 
         public bool IsFine
-            => CurrentHP > 40;
+            => CurrentHP >= 50;
 
         public bool IsCaution
-            => CurrentHP > 20 && CurrentHP <= 40;
+            => CurrentHP >= 30 && CurrentHP < 50;
 
         public bool IsDanger
-            => CurrentHP <= 20;
+            => CurrentHP < 30;
+
+        internal byte _isPoison;
+        public bool IsPoison
+        {
+            get => _isPoison == 1 ? true : false;
+            set => SetField(ref _isPoison, (byte)(value ? 1 : 0), "IsPoison", "Status", "DebugMessage");
+        }
+
+        public string Status
+        {
+            get
+            {
+                if (!IsAlive)
+                    return "Dead";
+                else if (IsPoison)
+                    return "Poison";
+                else if (IsDanger)
+                    return "Danger";
+                else if (IsCaution)
+                    return "Caution";
+                else
+                    return "Fine";
+            }
+        }
 
         public string Name
         {
@@ -133,23 +151,6 @@ namespace SRTPluginProviderMGU.Models
                     default:
                         return "Kenzo";
                 }
-            }
-        }
-
-        public string Status
-        {
-            get
-            {
-                if (!IsAlive)
-                    return "Dead";
-                else if (IsPoison)
-                    return "Poison";
-                else if (IsDanger)
-                    return "Danger";
-                else if (IsCaution)
-                    return "Caution";
-                else
-                    return "Fine";
             }
         }
 
