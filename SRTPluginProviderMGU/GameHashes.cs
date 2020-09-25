@@ -29,9 +29,9 @@ namespace SRTPluginProviderMGU
                 return GameVersion.MGU_1_1;
             else if (checksum.SequenceEqual(MGU_20) || checksum.SequenceEqual(MGU_20_MEMFIX))
                 return GameVersion.MGU_1_2;
-            else if (checksum.SequenceEqual(MGU_30) || 
+            else if (checksum.SequenceEqual(MGU_30) ||
                      checksum.SequenceEqual(MGU_30_MEMFIX) ||
-                     checksum.SequenceEqual(MGU_30_MEMFIX_PATCH) || 
+                     checksum.SequenceEqual(MGU_30_MEMFIX_PATCH) ||
                      checksum.SequenceEqual(MGU_30_PATCH))
                 return GameVersion.MGU_1_3;
             else

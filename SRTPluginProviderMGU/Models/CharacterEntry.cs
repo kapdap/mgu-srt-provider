@@ -90,8 +90,10 @@ namespace SRTPluginProviderMGU.Models
                 {
                     case CharacterEnumeration.Diane:
                         return "Diane Matlock";
+
                     case CharacterEnumeration.Martin:
                         return "Martin Karne";
+
                     default:
                         return "Uji Kenzo";
                 }
@@ -106,8 +108,10 @@ namespace SRTPluginProviderMGU.Models
                 {
                     case CharacterEnumeration.Diane:
                         return "Diane";
+
                     case CharacterEnumeration.Martin:
                         return "Martin";
+
                     default:
                         return "Uji";
                 }
@@ -122,8 +126,10 @@ namespace SRTPluginProviderMGU.Models
                 {
                     case CharacterEnumeration.Diane:
                         return "Matlock";
+
                     case CharacterEnumeration.Martin:
                         return "Karne";
+
                     default:
                         return "Kenzo";
                 }

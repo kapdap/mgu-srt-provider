@@ -8,7 +8,7 @@ namespace SRTPluginProviderMGU.Models
     public class TimeEntry : BaseNotifyModel
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public string _DebuggerDisplay => 
+        public string _DebuggerDisplay =>
             FormattedString;
 
         private const string TIMESPAN_STRING_FORMAT = @"hh\:mm\:ss";

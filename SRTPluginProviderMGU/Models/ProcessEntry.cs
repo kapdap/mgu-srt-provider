@@ -8,7 +8,7 @@ namespace SRTPluginProviderMGU.Models
     public class ProcessEntry : BaseNotifyModel, IEquatable<ProcessEntry>
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public string _DebuggerDisplay => 
+        public string _DebuggerDisplay =>
             String.Format("{0} ({1})", ProcessName, Id);
 
         internal int _id;

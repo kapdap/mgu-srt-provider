@@ -1,5 +1,4 @@
-﻿using ProcessMemory;
-using System;
+﻿using System;
 
 namespace SRTPluginProviderMGU
 {
@@ -23,6 +22,5 @@ namespace SRTPluginProviderMGU
         internal IntPtr[] Characters { get; set; }
         internal IntPtr[,] Inventory { get; set; }
         internal IntPtr[] Enemy { get; set; }
-
     }
 }

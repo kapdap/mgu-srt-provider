@@ -8,10 +8,11 @@ namespace SRTPluginProviderMGU.Models
     public class StateEntry : BaseNotifyModel
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public string _DebuggerDisplay => 
+        public string _DebuggerDisplay =>
             String.Format("{0} {1}", CurrentCharacter?.Name, CurrentRoom.Id);
 
         internal byte _currentCharacterId;
+
         public CharacterEnumeration CurrentCharacterId
         {
             get => (CharacterEnumeration)_currentCharacterId;

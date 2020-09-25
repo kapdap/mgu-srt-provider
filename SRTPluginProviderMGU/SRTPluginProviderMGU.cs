@@ -13,6 +13,7 @@ namespace SRTPluginProviderMGU
         private Stopwatch _stopwatch;
         private IPluginHostDelegates _hostDelegates;
         public IPluginInfo Info => new PluginInfo();
+
         public bool GameRunning
         {
             get

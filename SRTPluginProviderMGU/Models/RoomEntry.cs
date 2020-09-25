@@ -17,25 +17,25 @@ namespace SRTPluginProviderMGU.Models
             set => SetField(ref _id, value);
         }
 
-		internal string _name;
-		public string Name
-		{
-			get
+        internal string _name;
+        public string Name
+        {
+            get
             {
-				if (String.IsNullOrEmpty(_name))
+                if (String.IsNullOrEmpty(_name))
                     SetField(ref _name, GetName());
-				return _name;
+                return _name;
             }
             set => SetField(ref _name, value);
         }
 
-		internal string GetName()
+        internal string GetName()
         {
             switch (Id)
             {
-				default:
-					return "Unknown";
-			}
+                default:
+                    return "Unknown";
+            }
         }
 
         public override bool Equals(object obj) =>

@@ -1,5 +1,4 @@
 ﻿using SRTPluginProviderMGU.Models;
-using SRTPluginProviderMGU.Enumerations;
 
 namespace SRTPluginProviderMGU
 {

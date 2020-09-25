@@ -161,6 +161,7 @@ namespace SRTPluginProviderMGU
         }
 
         private int? GetProcessId(Process process) => process?.Id;
+
         private string GetProcessName(Process process) => process?.ProcessName;
 
         private bool disposedValue;
