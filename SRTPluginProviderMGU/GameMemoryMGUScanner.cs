@@ -38,9 +38,10 @@ namespace SRTPluginProviderMGU
                 Pointers.BaseAddress = NativeWrappers.GetProcessBaseAddress(_process.Id, PInvoke.ListModules.LIST_MODULES_32BIT);
 
                 Pointers.WindowHandle = IntPtr.Add(Pointers.BaseAddress, Pointers._addressWindowHandle);
-                Pointers.CurrentCharacterId = IntPtr.Add(Pointers.BaseAddress, Pointers._addressCurrentCharacterId);
                 Pointers.FrameCount = IntPtr.Add(Pointers.BaseAddress, Pointers._addressFrameCount);
+                Pointers.CurrentCharacterId = IntPtr.Add(Pointers.BaseAddress, Pointers._addressCurrentCharacterId);
                 Pointers.CurrentRoomId = IntPtr.Add(Pointers.BaseAddress, Pointers._addressCurrentRoomId);
+                Pointers.ZombieMaxHP = IntPtr.Add(Pointers.BaseAddress, Pointers._addressZombieMaxHP);
 
                 Pointers.Characters = new IntPtr[Memory.Characters.Length];
                 for (int i = 0; i < Pointers.Characters.Length; ++i)
@@ -72,6 +73,7 @@ namespace SRTPluginProviderMGU
                     Pointers._addressFrameCount = 0x1BCF64;
                     Pointers._addressCurrentCharacterId = 0x1BCF60;
                     Pointers._addressCurrentRoomId = 0x1BB519;
+                    Pointers._addressZombieMaxHP = 0x1BCF72;
                     Pointers._addressCharacters = 0x1BD0A8;
                     Pointers._addressInventory = 0x35196C;
                     Pointers._addressEnemy = 0x1BF088;
@@ -146,6 +148,7 @@ namespace SRTPluginProviderMGU
                 EnemyEntry entry = Memory.Enemy[i];
                 IntPtr pointer = Pointers.Enemy[i];
 
+                entry.SetField(_processMemory, Pointers.ZombieMaxHP, ref entry._maximumHP, "MaximumHP", "Percentage", "HealthMessage", "DebugMessage");
                 entry.SetField(_processMemory, IntPtr.Add(pointer, 0x6C), ref entry._currentHP, "CurrentHP", "DisplayHP", "Percentage", "HealthMessage", "DebugMessage");
                 entry.SetField(_processMemory, IntPtr.Add(pointer, 0xA0), ref entry._isAlive, "IsAlive", "HealthMessage", "DebugMessage");
 
