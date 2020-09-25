@@ -58,7 +58,6 @@ namespace SRTPluginProviderMGU
 
                 Memory.Process.Id = GetProcessId(_process).Value;
                 Memory.Process.ProcessName = GetProcessName(_process);
-                Memory.Process.SetField(_processMemory, Pointers.WindowHandle, ref Memory.Process._windowHandle, "WindowHandle");
             }
         }
 
@@ -85,7 +84,9 @@ namespace SRTPluginProviderMGU
 
         public unsafe IGameMemoryMGU Refresh()
         {
-            Memory.IGT.SetField(_processMemory, Pointers.FrameCounter, ref Memory.IGT._frameCounter, "FrameCounter", "Calculated", "TimeStamp", "FormattedString");
+            if (Memory.Process._windowHandle == 0)
+                Memory.Process.SetField(_processMemory, Pointers.WindowHandle, ref Memory.Process._windowHandle, "WindowHandle");
+
             Memory.IGT.SetField(_processMemory, Pointers.FrameCount, ref Memory.IGT._frameCount, "FrameCount", "Calculated", "TimeStamp", "FormattedString");
             Memory.State.SetField(_processMemory, Pointers.CurrentCharacterId, ref Memory.State._currentCharacterId, "CurrentCharacterId");
             Memory.State.CurrentRoom.SetField(_processMemory, Pointers.CurrentRoomId, ref Memory.State.CurrentRoom._id, "Id");
