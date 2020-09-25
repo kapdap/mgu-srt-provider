@@ -38,7 +38,7 @@ namespace SRTPluginProviderMGU
                 Pointers.BaseAddress = NativeWrappers.GetProcessBaseAddress(_process.Id, PInvoke.ListModules.LIST_MODULES_32BIT);
 
                 Pointers.WindowHandle = IntPtr.Add(Pointers.BaseAddress, Pointers._addressWindowHandle);
-                Pointers.CurrentCharacter = IntPtr.Add(Pointers.BaseAddress, Pointers._addressCurrentCharacter);
+                Pointers.CurrentCharacterId = IntPtr.Add(Pointers.BaseAddress, Pointers._addressCurrentCharacterId);
                 Pointers.FrameCount = IntPtr.Add(Pointers.BaseAddress, Pointers._addressFrameCount);
                 Pointers.CurrentRoom = IntPtr.Add(Pointers.BaseAddress, Pointers._addressCurrentRoom);
 
@@ -70,8 +70,8 @@ namespace SRTPluginProviderMGU
                 case GameVersion.MGU_1_3:
                     Pointers._addressWindowHandle = 0x1B57D8;
                     Pointers._addressFrameCount = 0x1BCF64;
-                    Pointers._addressCurrentCharacter = 0x1BCF60;
                     Pointers._addressCurrentRoom = 0x1BB519;
+                    Pointers._addressCurrentCharacterId = 0x1BCF60;
                     Pointers._addressCharacters = 0x1BD0A8;
                     Pointers._addressInventory = 0x35196C;
                     Pointers._addressEnemy = 0x1BF088;
@@ -84,8 +84,8 @@ namespace SRTPluginProviderMGU
         public unsafe IGameMemoryMGU Refresh()
         {
             Memory.IGT.SetField(_processMemory, Pointers.FrameCounter, ref Memory.IGT._frameCounter, "FrameCounter", "Calculated", "TimeStamp", "FormattedString");
-            Memory.State.SetField(_processMemory, Pointers.CurrentCharacter, ref Memory.State._currentCharacterId, "CurrentCharacter");
             Memory.IGT.SetField(_processMemory, Pointers.FrameCount, ref Memory.IGT._frameCount, "FrameCount", "Calculated", "TimeStamp", "FormattedString");
+            Memory.State.SetField(_processMemory, Pointers.CurrentCharacterId, ref Memory.State._currentCharacterId, "CurrentCharacterId");
             Memory.State.CurrentRoom.SetField(_processMemory, Pointers.CurrentRoom, ref Memory.State.CurrentRoom._id, "Id");
 
             Memory.State.CurrentCharacter = Memory.Characters[(int)Memory.State.CurrentCharacterId];
