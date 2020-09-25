@@ -13,15 +13,15 @@ namespace SRTPluginProviderMGU.Models
 
         private const string TIMESPAN_STRING_FORMAT = @"hh\:mm\:ss";
 
-        internal int _frameCounter;
-        public int FrameCounter
+        internal int _frameCount;
+        public int FrameCount
         {
-            get => _frameCounter;
-            set => SetField(ref _frameCounter, value, "FrameCounter", "Calculated", "TimeSpan", "FormattedString");
+            get => _frameCount;
+            set => SetField(ref _frameCount, value, "FrameCount", "Calculated", "TimeSpan", "FormattedString");
         }
 
         public int Calculated
-            => (_frameCounter >= 20000 ? _frameCounter - 20000 : _frameCounter) / 30;
+            => (_frameCount >= 20000 ? _frameCount - 20000 : _frameCount) / 30;
 
         public TimeSpan TimeSpan
         {

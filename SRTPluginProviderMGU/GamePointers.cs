@@ -7,7 +7,7 @@ namespace SRTPluginProviderMGU
         internal GameVersion Version { get; } = new GameVersion();
 
         internal int _addressWindowHandle;
-        internal int _addressFrameCounter;
+        internal int _addressFrameCount;
         internal int _addressCurrentRoom;
         internal int _addressCurrentCharacter;
         internal int _addressCharacters;
@@ -16,7 +16,7 @@ namespace SRTPluginProviderMGU
 
         internal IntPtr BaseAddress { get; set; }
         internal IntPtr WindowHandle { get; set; }
-        internal IntPtr FrameCounter { get; set; }
+        internal IntPtr FrameCount { get; set; }
         internal IntPtr CurrentRoom { get; set; }
         internal IntPtr CurrentCharacter { get; set; }
         internal IntPtr[] Characters { get; set; }
