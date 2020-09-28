@@ -55,9 +55,6 @@ namespace SRTPluginProviderMGU
                 Pointers.Enemy = new IntPtr[Memory.Enemy.Length];
                 for (int i = 0; i < Pointers.Enemy.Length; ++i)
                     Pointers.Enemy[i] = IntPtr.Add(Pointers.BaseAddress, Pointers._addressEnemy + (0xAC4 * i));
-
-                Memory.Process.Id = GetProcessId(_process).Value;
-                Memory.Process.ProcessName = GetProcessName(_process);
             }
         }
 
@@ -84,8 +81,9 @@ namespace SRTPluginProviderMGU
 
         public unsafe IGameMemoryMGU Refresh()
         {
-            if (Memory.Process._windowHandle == 0)
-                Memory.Process.SetField(_processMemory, Pointers.WindowHandle, ref Memory.Process._windowHandle, "WindowHandle");
+            Memory.Process.Id = GetProcessId(_process).Value;
+            Memory.Process.ProcessName = GetProcessName(_process);
+            Memory.Process.SetField(_processMemory, Pointers.WindowHandle, ref Memory.Process._windowHandle, "WindowHandle");
 
             Memory.IGT.SetField(_processMemory, Pointers.FrameCount, ref Memory.IGT._frameCount, "FrameCount", "Calculated", "TimeStamp", "FormattedString");
             Memory.State.SetField(_processMemory, Pointers.CurrentCharacterId, ref Memory.State._currentCharacterId, "CurrentCharacterId");
