@@ -27,8 +27,15 @@ namespace SRTPluginProviderMGU
             if ((_process = process) == null)
                 return;
 
-            if (!SetPointerAddresses(GameHashes.DetectVersion(_process.MainModule.FileName)))
+            try
+            {
+                if (!SetPointerAddresses(GameHashes.DetectVersion(_process?.MainModule?.FileName)))
+                    return;
+            }
+            catch
+            {
                 return;
+            }
 
             int pid = GetProcessId(_process).Value;
             _processMemory = new ProcessMemoryHandler(pid);
