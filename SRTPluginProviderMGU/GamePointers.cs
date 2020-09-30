@@ -16,7 +16,7 @@ namespace SRTPluginProviderMGU
         internal int _addressEnemy;
 
         internal IntPtr BaseAddress { get; set; }
-        internal IntPtr WindowHandle { get; set; }
+        internal IntPtr WindowHandleId { get; set; }
         internal IntPtr FrameCount { get; set; }
         internal IntPtr CurrentRoomId { get; set; }
         internal IntPtr CurrentCharacterId { get; set; }

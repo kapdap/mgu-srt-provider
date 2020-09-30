@@ -25,8 +25,19 @@ namespace SRTPluginProviderMGU.Models
             set => SetField(ref _processName, value);
         }
 
-        internal int _windowHandle;
-        public int WindowHandle
+        internal int _windowHandleId;
+        public int WindowHandleId
+        {
+            get => _windowHandleId;
+            set
+            {
+                if (SetField(ref _windowHandleId, value))
+                    WindowHandle = new IntPtr(_windowHandleId);
+            }
+        }
+
+        internal IntPtr _windowHandle = IntPtr.Zero;
+        public IntPtr WindowHandle
         {
             get => _windowHandle;
             set => SetField(ref _windowHandle, value);

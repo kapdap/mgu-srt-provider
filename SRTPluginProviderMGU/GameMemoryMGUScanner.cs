@@ -44,7 +44,7 @@ namespace SRTPluginProviderMGU
             {
                 Pointers.BaseAddress = NativeWrappers.GetProcessBaseAddress(_process.Id, PInvoke.ListModules.LIST_MODULES_32BIT);
 
-                Pointers.WindowHandle = IntPtr.Add(Pointers.BaseAddress, Pointers._addressWindowHandle);
+                Pointers.WindowHandleId = IntPtr.Add(Pointers.BaseAddress, Pointers._addressWindowHandle);
                 Pointers.FrameCount = IntPtr.Add(Pointers.BaseAddress, Pointers._addressFrameCount);
                 Pointers.CurrentCharacterId = IntPtr.Add(Pointers.BaseAddress, Pointers._addressCurrentCharacterId);
                 Pointers.CurrentRoomId = IntPtr.Add(Pointers.BaseAddress, Pointers._addressCurrentRoomId);
@@ -90,7 +90,8 @@ namespace SRTPluginProviderMGU
         {
             Memory.Process.Id = GetProcessId(_process).Value;
             Memory.Process.ProcessName = GetProcessName(_process);
-            Memory.Process.SetField(_processMemory, Pointers.WindowHandle, ref Memory.Process._windowHandle, "WindowHandle");
+            if (Memory.Process.SetField(_processMemory, Pointers.WindowHandleId, ref Memory.Process._windowHandleId, "WindowHandleId"))
+                Memory.Process.WindowHandle = new IntPtr(Memory.Process.WindowHandleId);
 
             Memory.IGT.SetField(_processMemory, Pointers.FrameCount, ref Memory.IGT._frameCount, "FrameCount", "Calculated", "TimeStamp", "FormattedString");
             Memory.State.SetField(_processMemory, Pointers.CurrentCharacterId, ref Memory.State._currentCharacterId, "CurrentCharacterId");
