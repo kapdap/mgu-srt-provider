@@ -12,7 +12,6 @@ namespace SRTPluginProviderMGU.Models
             String.Format("{0} {1}", CurrentCharacter?.Name, CurrentRoom.Id);
 
         internal byte _currentCharacterId;
-
         public CharacterEnumeration CurrentCharacterId
         {
             get => (CharacterEnumeration)_currentCharacterId;

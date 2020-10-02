@@ -65,7 +65,7 @@ namespace SRTPluginProviderMGU.Models
             => IsAlive ? (float)DisplayHP / MaximumHP : 0f;
 
         public bool IsAlive
-            => CurrentHP >= 0;
+            => CurrentHP > 0;
 
         public bool IsFine
             => CurrentHP >= 50;

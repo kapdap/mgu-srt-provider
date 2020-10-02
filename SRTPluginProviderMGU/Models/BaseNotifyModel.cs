@@ -20,9 +20,7 @@ namespace SRTPluginProviderMGU.Models
 
             field = value;
 
-            OnPropertyChanged(name);
-            foreach (string property in properties)
-                OnPropertyChanged(property);
+            SendUpdateEvent(name, properties);
 
             return true;
         }
@@ -59,15 +57,17 @@ namespace SRTPluginProviderMGU.Models
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
 
-            OnPropertyChanged(name);
-            foreach (string property in properties)
-                OnPropertyChanged(property);
+            SendUpdateEvent(name, properties);
 
             return true;
         }
 
-        public void SendUpdateEvent(string name) =>
+        public void SendUpdateEvent(string name, params string[] properties)
+        {
             OnPropertyChanged(name);
+            foreach (string property in properties)
+                OnPropertyChanged(property);
+        }
 
         public void SendUpdateEntryEvent() =>
             OnPropertyChanged("UpdateEntry");

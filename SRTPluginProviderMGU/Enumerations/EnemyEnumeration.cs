@@ -1,7 +1,9 @@
 ﻿namespace SRTPluginProviderMGU.Enumerations
 {
-    public enum EnemyEnumeration : byte
+    public enum EnemyEnumeration : long
     {
-        None = 0
+        None = -1,
+        Undead = 110369475686005,
+        Extrude = 28539428241963109
     }
 }

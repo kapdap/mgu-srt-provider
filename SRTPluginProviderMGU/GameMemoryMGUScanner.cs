@@ -94,9 +94,9 @@ namespace SRTPluginProviderMGU
                 Memory.Process.WindowHandle = new IntPtr(Memory.Process.WindowHandleId);
 
             Memory.IGT.SetField(_processMemory, Pointers.FrameCount, ref Memory.IGT._frameCount, "FrameCount", "Calculated", "TimeStamp", "FormattedString");
-            Memory.State.SetField(_processMemory, Pointers.CurrentCharacterId, ref Memory.State._currentCharacterId, "CurrentCharacterId");
-            Memory.State.CurrentRoom.SetField(_processMemory, Pointers.CurrentRoomId, ref Memory.State.CurrentRoom._id, "Id");
 
+            Memory.State.CurrentRoom.SetField(_processMemory, Pointers.CurrentRoomId, ref Memory.State.CurrentRoom._id, "Id");
+            Memory.State.SetField(_processMemory, Pointers.CurrentCharacterId, ref Memory.State._currentCharacterId, "CurrentCharacterId");
             Memory.State.CurrentCharacter = Memory.Characters[(int)Memory.State.CurrentCharacterId];
 
             RefreshCharacters();
@@ -124,8 +124,6 @@ namespace SRTPluginProviderMGU
 
         public unsafe void RefreshInventory(CharacterEntry character)
         {
-            int index = 0;
-
             for (int i = 0; i < character.Inventory.Length; ++i)
             {
                 InventoryEntry entry = character.Inventory[i];
@@ -138,37 +136,28 @@ namespace SRTPluginProviderMGU
                     entry.IsEmpty = false;
                 else
                     entry.Clear();
-
-                index++;
             }
-
-            for (int i = index; i < character.Inventory.Length; i++)
-                character.Inventory[i].Clear();
         }
 
         public unsafe void RefreshEnemy()
         {
-            int index = 0;
-
             for (int i = 0; i < Memory.Enemy.Length; ++i)
             {
                 EnemyEntry entry = Memory.Enemy[i];
                 IntPtr pointer = Pointers.Enemy[i];
 
-                entry.SetField(_processMemory, Pointers.ZombieMaxHP, ref entry._maximumHP, "MaximumHP", "Percentage", "HealthMessage", "DebugMessage");
-                entry.SetField(_processMemory, IntPtr.Add(pointer, 0x6C), ref entry._currentHP, "CurrentHP", "DisplayHP", "Percentage", "HealthMessage", "DebugMessage");
-                entry.SetField(_processMemory, IntPtr.Add(pointer, 0xA0), ref entry._isAlive, "IsAlive", "HealthMessage", "DebugMessage");
+                entry.SetField(_processMemory, IntPtr.Add(pointer, 0x90A), ref entry._type, "IsEmpty", "Type", "Name", "DebugMessage");
 
-                if (entry.IsAlive)
-                    entry.IsEmpty = false;
+                if (entry.Type == EnemyEnumeration.Undead)
+                    entry.SetField(_processMemory, Pointers.ZombieMaxHP, ref entry._maximumHP, "IsAlive", "MaximumHP", "Percentage", "HealthMessage", "DebugMessage");
                 else
-                    entry.Clear();
+                    entry.MaximumHP = 100;
+                
+                entry.SetField(_processMemory, IntPtr.Add(pointer, 0x6C), ref entry._currentHP, "IsAlive", "CurrentHP", "DisplayHP", "Percentage", "HealthMessage", "DebugMessage");
 
-                index++;
+                if (entry.Room.SetField(_processMemory, IntPtr.Add(pointer, 0x76), ref entry.Room._id, "Id"))
+                    entry.SendUpdateEvent("DebugMessage");
             }
-
-            for (int i = index; i < Memory.Enemy.Length; i++)
-                Memory.Enemy[i].Clear();
         }
 
         private int? GetProcessId(Process process) => process?.Id;
