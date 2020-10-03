@@ -31,7 +31,8 @@ namespace SRTPluginProviderMGU.Models
 
         public RoomEntry Room { get; } = new RoomEntry();
 
-        internal long _type = 0;
+        internal byte[] _typeMem = new byte[8];
+        internal long _type;
         public EnemyEnumeration Type
         {
             get => Enum.IsDefined(typeof(EnemyEnumeration), (EnemyEnumeration)_type) ? (EnemyEnumeration)_type : EnemyEnumeration.None;

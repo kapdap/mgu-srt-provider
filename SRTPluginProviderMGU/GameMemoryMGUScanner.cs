@@ -2,6 +2,7 @@
 using SRTPluginProviderMGU.Enumerations;
 using SRTPluginProviderMGU.Models;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace SRTPluginProviderMGU
@@ -32,10 +33,7 @@ namespace SRTPluginProviderMGU
                 if (!SetPointerAddresses(GameHashes.DetectVersion(_process?.MainModule?.FileName)))
                     return;
             }
-            catch
-            {
-                return;
-            }
+            catch { return; }
 
             int pid = GetProcessId(_process).Value;
             _processMemory = new ProcessMemoryHandler(pid);
@@ -150,7 +148,19 @@ namespace SRTPluginProviderMGU
                 EnemyEntry entry = Memory.Enemy[i];
                 IntPtr pointer = Pointers.Enemy[i];
 
-                entry.SetField(_processMemory, IntPtr.Add(pointer, 0x90A), ref entry._type, "IsEmpty", "Type", "Name", "DebugMessage");
+                fixed (byte* p = entry._typeMem)
+                {
+                    byte[] value = new byte[entry._typeMem.Length];
+                    entry._typeMem.CopyTo(value, 0);
+
+                    _processMemory.TryGetByteArrayAt(IntPtr.Add(pointer, 0x90A), 7, (IntPtr)p);
+
+                    if (!value.Equals(entry._typeMem))
+                    {
+                        entry._type = BitConverter.ToInt64(entry._typeMem);
+                        entry.SendUpdateEvent("IsEmpty", "Type", "Name", "DebugMessage");
+                    }
+                }
 
                 if (entry.Type == EnemyEnumeration.Undead)
                     entry.SetField(_processMemory, Pointers.ZombieMaxHP, ref entry._maximumHP, "IsAlive", "MaximumHP", "Percentage", "HealthMessage", "DebugMessage");

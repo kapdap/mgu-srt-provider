@@ -52,6 +52,8 @@ namespace SRTPluginProviderMGU.Models
                     processMemory.TryGetFloatAt(pointer, (IntPtr)p);
                 else if (typeof(T) == typeof(double))
                     processMemory.TryGetDoubleAt(pointer, (IntPtr)p);
+                else if (typeof(T) == typeof(double))
+                    processMemory.TryGetDoubleAt(pointer, (IntPtr)p);
             }
 
             if (EqualityComparer<T>.Default.Equals(field, value))
