@@ -79,7 +79,7 @@ namespace SRTPluginProviderMGU.Models
             CurrentHP > 0 && MaximumHP >= CurrentHP;
 
         public bool IsEmpty =>
-            Type == EnemyEnumeration.None;
+            Type == EnemyEnumeration.None || CurrentHP > MaximumHP;
 
         public EnemyEntry(int index) =>
             Index = index;
