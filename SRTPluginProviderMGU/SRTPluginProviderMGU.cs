@@ -8,8 +8,7 @@ namespace SRTPluginProviderMGU
 {
     public class SRTPluginProviderMGU : IPluginProvider
     {
-        private Process _process;
-        private GameMemoryMGUScanner _memory;
+        private GameMemoryMGUScanner _memoryScanner;
         private Stopwatch _stopwatch;
         private IPluginHostDelegates _hostDelegates;
         public IPluginInfo Info => new PluginInfo();
@@ -18,22 +17,17 @@ namespace SRTPluginProviderMGU
         {
             get
             {
-                if (_memory != null && !_memory.ProcessRunning)
-                {
-                    _process = GetProcess();
-                    if (_process != null)
-                        _memory.Initialize(_process); // Re-initialize and attempt to continue.
-                }
+                if (_memoryScanner != null && !_memoryScanner.ProcessRunning)
+                    _memoryScanner.Initialize(GetProcess());
 
-                return _memory != null && _memory.ProcessRunning;
+                return _memoryScanner != null && _memoryScanner.ProcessRunning;
             }
         }
 
         public int Startup(IPluginHostDelegates hostDelegates)
         {
             _hostDelegates = hostDelegates;
-            _process = GetProcess();
-            _memory = new GameMemoryMGUScanner(_process);
+            _memoryScanner = new GameMemoryMGUScanner(GetProcess());
             _stopwatch = new Stopwatch();
             _stopwatch.Start();
             return 0;
@@ -41,8 +35,8 @@ namespace SRTPluginProviderMGU
 
         public int Shutdown()
         {
-            _memory?.Dispose();
-            _memory = null;
+            _memoryScanner?.Dispose();
+            _memoryScanner = null;
             _stopwatch?.Stop();
             _stopwatch = null;
             return 0;
@@ -57,10 +51,11 @@ namespace SRTPluginProviderMGU
 
                 if (_stopwatch.ElapsedMilliseconds >= 2000L)
                 {
+                    _memoryScanner.Update();
                     _stopwatch.Restart();
                 }
 
-                return _memory.Refresh();
+                return _memoryScanner.Refresh();
             }
             catch (Win32Exception ex)
             {

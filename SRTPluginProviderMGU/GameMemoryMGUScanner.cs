@@ -62,6 +62,8 @@ namespace SRTPluginProviderMGU
                 Pointers.Enemy = new IntPtr[Memory.Enemy.Length];
                 for (int i = 0; i < Pointers.Enemy.Length; ++i)
                     Pointers.Enemy[i] = IntPtr.Add(Pointers.BaseAddress, Pointers._addressEnemy + (0xAC4 * i));
+
+                Update();
             }
         }
 
@@ -85,14 +87,16 @@ namespace SRTPluginProviderMGU
 
             return false;
         }
-
-        public unsafe IGameMemoryMGU Refresh()
+        public unsafe void Update()
         {
             Memory.Process.Id = GetProcessId(_process).Value;
             Memory.Process.ProcessName = GetProcessName(_process);
             if (Memory.Process.SetField(_processMemory, Pointers.WindowHandleId, ref Memory.Process._windowHandleId, "WindowHandleId"))
                 Memory.Process.WindowHandle = new IntPtr(Memory.Process.WindowHandleId);
+        }
 
+        public unsafe IGameMemoryMGU Refresh()
+        {
             Memory.IGT.SetField(_processMemory, Pointers.FrameCount, ref Memory.IGT._frameCount, "FrameCount", "Calculated", "TimeStamp", "FormattedString");
 
             Memory.State.CurrentRoom.SetField(_processMemory, Pointers.CurrentRoomId, ref Memory.State.CurrentRoom._id, "Id");
