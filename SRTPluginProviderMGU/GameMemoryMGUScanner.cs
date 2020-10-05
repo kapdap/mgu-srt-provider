@@ -85,6 +85,7 @@ namespace SRTPluginProviderMGU
 
             return false;
         }
+
         public unsafe void Update()
         {
             Memory.Process.Id = GetProcessId(_process).Value;
