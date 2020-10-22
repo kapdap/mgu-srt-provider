@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SRTPluginProviderMGU", "SRTPluginProviderMGU\SRTPluginProviderMGU.csproj", "{82E0FD5F-9719-46D0-9935-F28DC4B92BFD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SRTPluginBase", "..\SRTHost\SRTPluginBase\SRTPluginBase.csproj", "{88CAB0A8-7DB3-461A-916D-FE453BA88F3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SRTPluginBase", "SRTHost\SRTPluginBase\SRTPluginBase.csproj", "{A0557FC7-3263-42B4-9CA1-16489448A70E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessMemory", "..\ProcessMemory\ProcessMemory\ProcessMemory.csproj", "{B1511BC6-77E3-4F95-BB05-FF7B78AB8285}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SRTHost", "SRTHost\SRTHost\SRTHost.csproj", "{16650772-6B84-46BB-BC42-040FD04514FA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SRTHost", "..\SRTHost\SRTHost\SRTHost.csproj", "{829FCCA8-D8A3-4A1A-9A56-82D80D3ACF50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessMemory", "ProcessMemory\ProcessMemory\ProcessMemory.csproj", "{8B482733-900B-400A-AC14-14D9BC871084}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +21,18 @@ Global
 		{82E0FD5F-9719-46D0-9935-F28DC4B92BFD}.Debug|x86.Build.0 = Debug|x86
 		{82E0FD5F-9719-46D0-9935-F28DC4B92BFD}.Release|x86.ActiveCfg = Release|x86
 		{82E0FD5F-9719-46D0-9935-F28DC4B92BFD}.Release|x86.Build.0 = Release|x86
-		{88CAB0A8-7DB3-461A-916D-FE453BA88F3C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{88CAB0A8-7DB3-461A-916D-FE453BA88F3C}.Debug|x86.Build.0 = Debug|Any CPU
-		{88CAB0A8-7DB3-461A-916D-FE453BA88F3C}.Release|x86.ActiveCfg = Release|Any CPU
-		{88CAB0A8-7DB3-461A-916D-FE453BA88F3C}.Release|x86.Build.0 = Release|Any CPU
-		{B1511BC6-77E3-4F95-BB05-FF7B78AB8285}.Debug|x86.ActiveCfg = Debug|x86
-		{B1511BC6-77E3-4F95-BB05-FF7B78AB8285}.Debug|x86.Build.0 = Debug|x86
-		{B1511BC6-77E3-4F95-BB05-FF7B78AB8285}.Release|x86.ActiveCfg = Release|x86
-		{B1511BC6-77E3-4F95-BB05-FF7B78AB8285}.Release|x86.Build.0 = Release|x86
-		{829FCCA8-D8A3-4A1A-9A56-82D80D3ACF50}.Debug|x86.ActiveCfg = Debug|x86
-		{829FCCA8-D8A3-4A1A-9A56-82D80D3ACF50}.Debug|x86.Build.0 = Debug|x86
-		{829FCCA8-D8A3-4A1A-9A56-82D80D3ACF50}.Release|x86.ActiveCfg = Release|x86
-		{829FCCA8-D8A3-4A1A-9A56-82D80D3ACF50}.Release|x86.Build.0 = Release|x86
+		{A0557FC7-3263-42B4-9CA1-16489448A70E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A0557FC7-3263-42B4-9CA1-16489448A70E}.Debug|x86.Build.0 = Debug|Any CPU
+		{A0557FC7-3263-42B4-9CA1-16489448A70E}.Release|x86.ActiveCfg = Release|Any CPU
+		{A0557FC7-3263-42B4-9CA1-16489448A70E}.Release|x86.Build.0 = Release|Any CPU
+		{16650772-6B84-46BB-BC42-040FD04514FA}.Debug|x86.ActiveCfg = Debug|x86
+		{16650772-6B84-46BB-BC42-040FD04514FA}.Debug|x86.Build.0 = Debug|x86
+		{16650772-6B84-46BB-BC42-040FD04514FA}.Release|x86.ActiveCfg = Release|x86
+		{16650772-6B84-46BB-BC42-040FD04514FA}.Release|x86.Build.0 = Release|x86
+		{8B482733-900B-400A-AC14-14D9BC871084}.Debug|x86.ActiveCfg = Debug|x86
+		{8B482733-900B-400A-AC14-14D9BC871084}.Debug|x86.Build.0 = Debug|x86
+		{8B482733-900B-400A-AC14-14D9BC871084}.Release|x86.ActiveCfg = Release|x86
+		{8B482733-900B-400A-AC14-14D9BC871084}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

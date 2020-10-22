@@ -29,11 +29,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ProcessMemory\ProcessMemory\ProcessMemory.csproj" />
-    <ProjectReference Include="..\..\SRTHost\SRTPluginBase\SRTPluginBase.csproj">
-      <Private>false</Private>
-      <ExcludeAssets>runtime</ExcludeAssets>
-    </ProjectReference>
+    <ProjectReference Include="..\ProcessMemory\ProcessMemory\ProcessMemory.csproj" />
+    <ProjectReference Include="..\SRTHost\SRTPluginBase\SRTPluginBase.csproj" />
   </ItemGroup>
 
   <Target Name="CopyOutputToDestination" AfterTargets="AfterBuild">

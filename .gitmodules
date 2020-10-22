@@ -1,0 +1,6 @@
+[submodule "ProcessMemory"]
+	path = ProcessMemory
+	url = https://github.com/Squirrelies/ProcessMemory.git
+[submodule "SRTHost"]
+	path = SRTHost
+	url = https://github.com/Squirrelies/SRTHost.git
