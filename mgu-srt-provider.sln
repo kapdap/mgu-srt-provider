@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SRTPluginProviderMGU", "SRTPluginProviderMGU\SRTPluginProviderMGU.csproj", "{82E0FD5F-9719-46D0-9935-F28DC4B92BFD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SRTPluginBase", "SRTHost\SRTPluginBase\SRTPluginBase.csproj", "{A0557FC7-3263-42B4-9CA1-16489448A70E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SRTPluginBase", "..\SRTHost\SRTPluginBase\SRTPluginBase.csproj", "{A0557FC7-3263-42B4-9CA1-16489448A70E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SRTHost", "SRTHost\SRTHost\SRTHost.csproj", "{16650772-6B84-46BB-BC42-040FD04514FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SRTHost", "..\SRTHost\SRTHost\SRTHost.csproj", "{16650772-6B84-46BB-BC42-040FD04514FA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessMemory", "ProcessMemory\ProcessMemory\ProcessMemory.csproj", "{8B482733-900B-400A-AC14-14D9BC871084}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessMemory", "..\ProcessMemory\ProcessMemory\ProcessMemory.csproj", "{8B482733-900B-400A-AC14-14D9BC871084}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
