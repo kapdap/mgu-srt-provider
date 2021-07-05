@@ -4,6 +4,8 @@ namespace SRTPluginProviderMGU
 {
     public interface IGameMemoryMGU
     {
+        public string GameName { get; }
+
         public ProcessEntry Process { get; }
         public StateEntry State { get; }
         public TimeEntry IGT { get; }

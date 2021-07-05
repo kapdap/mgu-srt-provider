@@ -4,6 +4,8 @@ namespace SRTPluginProviderMGU
 {
     public class GameMemoryMGU : BaseNotifyModel, IGameMemoryMGU
     {
+        public string GameName => "MGU";
+
         public ProcessEntry Process { get; } = new ProcessEntry();
         public StateEntry State { get; } = new StateEntry();
         public TimeEntry IGT { get; } = new TimeEntry();
